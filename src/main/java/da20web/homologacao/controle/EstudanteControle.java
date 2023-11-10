@@ -1,5 +1,7 @@
 package da20web.homologacao.controle;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +22,9 @@ public class EstudanteControle {
 	private EstudanteServico estudanteServico;
 	
 	@GetMapping("/")
-	public String listarEstudantes() {
+	public String listarEstudantes(Model model) {
+		List<Estudante> estudantes = estudanteServico.buscarTodosEstudantes();
+		model.addAttribute("listaEstudantes", estudantes);
 		return "/lista-estudantes";
 	}
 	

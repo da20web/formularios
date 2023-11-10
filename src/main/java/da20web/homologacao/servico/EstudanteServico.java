@@ -1,5 +1,7 @@
 package da20web.homologacao.servico;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +16,9 @@ public class EstudanteServico {
 	
 	public Estudante criarEstudante(Estudante estudante) {
 		return estudanteRepositorio.save(estudante);
+	}
+
+	public List<Estudante> buscarTodosEstudantes() {
+		return estudanteRepositorio.findAll();
 	}
 }

@@ -15,7 +15,7 @@ public class Estudante {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank(message = "O nome deve ser informado") //Anotações do Validation
+	@NotBlank(message = "O nome deve ser informado") //Anotações do Valid
 	@Size(min = 2, message = "O nome deve ter no mínimo 2 caracteres")
 	private String nome;
 	
