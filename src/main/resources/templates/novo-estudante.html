@@ -25,6 +25,11 @@
 <body>
 
 	<div class="container">
+		<div class="row" style="padding: 30px 0 30px 0;">
+			<div class="col">
+				<a th:href="@{/}" class="btn btn-secondary">Início</a>
+			</div>
+		</div>
 		<div class="row" style="padding-top: 30px;">
 			<div class="col">
 				<h2>Cadastro estudante</h2>
@@ -47,7 +52,7 @@
 					<div class="row mb-3">
 						<label class="col-sm-1 col-form-label">Idade:</label>
 						<div class="col-sm-5">
-							<input class="form-control" type="number" th:field="*{idade}">
+							<input class="form-control" type="text" th:field="*{idade}">
 							<span class="mensagem" th:if="${#fields.hasErrors('idade')}"
 								th:errors="*{idade}"></span>
 						</div>
