@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import da20web.homologacao.excecao.EstudanteNotFoundException;
 import da20web.homologacao.modelo.Estudante;
 import da20web.homologacao.repositorio.EstudanteRepositorio;
+import jakarta.validation.Valid;
 
 @Service
 public class EstudanteServico {
@@ -36,5 +37,10 @@ public class EstudanteServico {
 	public void apagarEstudante(Long id) throws EstudanteNotFoundException {
 		Estudante estudante = buscarEstudantePorId(id);
 		estudanteRepositorio.delete(estudante);
+	}
+
+	public void editarEstudante(Estudante estudante) {
+		estudanteRepositorio.save(estudante);
+		
 	}
 }

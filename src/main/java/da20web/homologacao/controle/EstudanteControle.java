@@ -59,4 +59,31 @@ public class EstudanteControle {
 		}
 		return "redirect:/";
 	}
+	
+	@GetMapping("/editar/{id}")
+	public String editarEstudante(@PathVariable("id") Long id,
+			RedirectAttributes attributes,
+			Model model) {
+		try {
+			Estudante estudante = estudanteServico.buscarEstudantePorId(id);
+			model.addAttribute("objetoEstudante", estudante);
+			return "editar-estudante";
+		} catch (EstudanteNotFoundException e) {
+			attributes.addFlashAttribute("mensagemErro", e.getMessage());
+		}
+		return "redirect:/";
+	}
+	
+	@PostMapping("/editar/{id}")
+	public String editarEstudante(@PathVariable("id") long id,
+			@ModelAttribute("objetoEstudante") @Valid Estudante estudante,
+			BindingResult erros,
+			RedirectAttributes attributes) {
+		if (erros.hasErrors()) {
+			estudante.setId(id);
+			return "/editar-estudante";
+		}
+		estudanteServico.editarEstudante(estudante);
+		return "redirect:/";
+	}
 }

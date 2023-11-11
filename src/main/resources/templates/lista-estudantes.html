@@ -41,7 +41,7 @@
 				</thead>
 				<tbody>
 					<tr th:if="${listaEstudantes.empty}">
-						<td colspan="3">Não existem estudantes.</td>
+						<td colspan="4">Não existem estudantes.</td>
 					</tr>
 					<tr th:each="estudante : ${listaEstudantes}"> 
 						<td><span th:text="${estudante.id}"></span></td>
@@ -50,7 +50,10 @@
 						<td><a class="fa-regular fa-trash-can icon-dark btn-delete" 
 						th:href="@{/apagar/{id}(id=${estudante.id})}"
 						th:data-confirm-delete="|Você gostaria de apagar ${estudante.nome}?|"
-						th:onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"></a></td>
+						th:onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"></a>
+						&nbsp;
+						<a class="fa-regular fa-pen-to-square icon-dark"
+						th:href="@{/editar/{id}(id=${estudante.id})}"></a></td>
 					</tr>
 				</tbody>
 			</table>
