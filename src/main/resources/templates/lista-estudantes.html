@@ -24,7 +24,18 @@
 			<div class="col">
 				<a th:href="@{/novo}" class="btn btn-secondary">Novo Estudante</a>
 			</div>
+			
+			<div class="col-sm-4 float-right">
+				<form th:action="@{/buscar}" method="post">
+					<div class="input-group">
+						<input type="text" class="form-control" name="nome" />
+						<input class="btn btn-primary" type="submit" value="Buscar" />
+						<a th:href="@{/}" class="btn btn-secondary" type="submit">Cancelar</a>
+					</div>
+				</form>
+			</div>
 		</div>
+		
 		<div class="row">
 			<div class="alert alert-danger alert-dismissible fade show"
 				th:if="${mensagemErro}">
