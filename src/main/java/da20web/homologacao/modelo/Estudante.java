@@ -1,9 +1,12 @@
 package da20web.homologacao.modelo;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -14,11 +17,16 @@ public class Estudante {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@NotBlank(message = "O nome deve ser informado") //Anotações do Valid
+
+	@NotBlank(message = "O nome deve ser informado") // Anotações do Valid
 	@Size(min = 2, message = "O nome deve ter no mínimo 2 caracteres")
 	private String nome;
-	
+
+	//@OneToOne(mappedBy = "estudante", cascade = CascadeType.ALL)
+	//@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL)
+	private Endereco endereco;
+
 	@Min(value = 18, message = "O aluno deve ter no mínimo 18 anos")
 	private int idade;
 
