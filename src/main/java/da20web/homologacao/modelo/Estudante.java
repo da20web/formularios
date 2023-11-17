@@ -22,9 +22,7 @@ public class Estudante {
 	@Size(min = 2, message = "O nome deve ter no mínimo 2 caracteres")
 	private String nome;
 
-	//@OneToOne(mappedBy = "estudante", cascade = CascadeType.ALL)
-	//@OneToOne(fetch = FetchType.LAZY)
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "estudante", cascade = CascadeType.ALL)
 	private Endereco endereco;
 
 	@Min(value = 18, message = "O aluno deve ter no mínimo 18 anos")
@@ -52,5 +50,13 @@ public class Estudante {
 
 	public void setIdade(int idade) {
 		this.idade = idade;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 }

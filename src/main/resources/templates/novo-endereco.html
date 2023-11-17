@@ -32,29 +32,38 @@
 		</div>
 		<div class="row" style="padding-top: 30px;">
 			<div class="col">
-				<h2 class="mb-4">Cadastro estudante</h2>
+				<h2 class="mb-4">Cadastro endereço</h2>
 				<div class="alert alert-success alert-dismissible fade show"
 					th:if="${mensagem}">
 					<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 					<span th:text="${mensagem}"></span>
 				</div>
-				<form th:action="@{/gravar}" th:object="${novoEstudante}" method="post">
+				<form th:action="@{/endereco/gravar-endereco/{idEstudante}(idEstudante=${item.estudante.id})}" th:object="${item}" method="post">
 
 					<div class="row mb-3">
-						<label class="col-sm-1 col-form-label">Nome:</label>
+						<label class="col-sm-1 col-form-label">Logradouro:</label>
 						<div class="col-sm-5">
-							<input class="form-control" type="text" th:field="*{nome}">						
-							<span class="mensagem" th:if="${#fields.hasErrors('nome')}"
-								th:errors="*{nome}"></span>						
+							<input class="form-control" type="text" th:field="*{logradouro}">						
+							<span class="mensagem" th:if="${#fields.hasErrors('logradouro')}"
+								th:errors="*{logradouro}"></span>						
 						</div>						
 					</div>
 
 					<div class="row mb-3">
-						<label class="col-sm-1 col-form-label">Idade:</label>
+						<label class="col-sm-1 col-form-label">Número:</label>
 						<div class="col-sm-5">
-							<input class="form-control" type="text" th:field="*{idade}">
-							<span class="mensagem" th:if="${#fields.hasErrors('idade')}"
-								th:errors="*{idade}"></span>
+							<input class="form-control" type="text" th:field="*{numero}">
+							<span class="mensagem" th:if="${#fields.hasErrors('numero')}"
+								th:errors="*{numero}"></span>
+						</div>
+					</div>
+					
+					<div class="row mb-3">
+						<label class="col-sm-1 col-form-label">CEP:</label>
+						<div class="col-sm-5">
+							<input class="form-control" type="text" th:field="*{cep}">
+							<span class="mensagem" th:if="${#fields.hasErrors('cep')}"
+								th:errors="*{cep}"></span>
 						</div>
 					</div>
 
