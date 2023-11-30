@@ -28,6 +28,7 @@ public class EstudanteControle {
 	public String listarEstudantes(Model model) {
 		List<Estudante> estudantes = estudanteServico.buscarTodosEstudantes();
 		model.addAttribute("listaEstudantes", estudantes);
+		model.addAttribute("nomePagina","Estudante");
 		return "/lista-estudantes";
 	}
 	
