@@ -17,4 +17,4 @@ COPY --from=build /app/target/*.war app.war
 EXPOSE 8080
 
 # Comando para iniciar a aplicação
-ENTRYPOINT ["java", "-jar", "app.war"]
+ENTRYPOINT ["java", "-Xmx150m", "-Xms150m", "-jar", "app.war"]
