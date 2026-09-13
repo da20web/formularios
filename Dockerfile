@@ -1,27 +1,20 @@
-# STAGE 1: BUILD
-FROM maven:3.9-eclipse-temurin-17-alpine AS build
+# Estágio 1: Construção (Build)
+FROM maven:3.9-eclipse-temurin-17 AS build
 WORKDIR /app
-
-# Copia apenas o pom.xml primeiro para aproveitar cache do Maven
+# Copia os arquivos do projeto
 COPY pom.xml .
-RUN mvn dependency:go-offline -B
-
-# Copia o restante do código
 COPY src ./src
+# Compila o projeto e pula os testes para o deploy ser mais rápido
+RUN mvn clean package -DskipTests
 
-# Build do WAR
-RUN mvn clean package -DskipTests -B
-
-# STAGE 2: RUNTIME
-FROM eclipse-temurin:17-jdk-alpine
+# Estágio 2: Execução (Run)
+FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
-
-# Copia o WAR gerado pelo build
+# Copia apenas o arquivo .war gerado no estágio anterior
 COPY --from=build /app/target/*.war app.war
 
-# A Vercel define a porta em $PORT; o Spring deve escutar nela
-ENV PORT=8080
-EXPOSE $PORT
+# O Spring Boot roda na porta 8080 por padrão
+EXPOSE 8080
 
-# Executa o WAR como aplicação standalone (Tomcat embutido)
-ENTRYPOINT ["java", "-Dserver.port=${PORT}", "-jar", "app.war"]
+# Comando para iniciar a aplicação
+ENTRYPOINT ["java", "-jar", "app.war"]
