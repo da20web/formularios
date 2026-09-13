@@ -1,4 +1,4 @@
-app = "NOME_DO_SEU_APP"
+app = "formularios"
 primary_region = "gru"
 
 [http_service]
