@@ -29,7 +29,7 @@ public class EstudanteControle {
 		List<Estudante> estudantes = estudanteServico.buscarTodosEstudantes();
 		model.addAttribute("listaEstudantes", estudantes);
 		model.addAttribute("nomePagina","Estudante");
-		return "/lista-estudantes";
+		return "lista-estudantes";
 	}
 	
 	@PostMapping("/buscar")
