@@ -37,10 +37,10 @@ public class EnderecoControle {
 				Endereco endereco = new Endereco();
 				endereco.setEstudante(estudante);
 				model.addAttribute("item", endereco);
-				pagina = "/novo-endereco";
+				pagina = "novo-endereco";
 			} else {
 				model.addAttribute("item", estudante.getEndereco());
-				pagina = "/editar-endereco";
+				pagina = "editar-endereco";
 			}
 		} catch (EstudanteNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -62,7 +62,7 @@ public class EnderecoControle {
 			e.printStackTrace();
 		}
 		if (result.hasErrors()) {
-			return "/novo-endereco";
+			return "novo-endereco";
 		}
 		enderecoServico.salvar(endereco);
 		attributes.addFlashAttribute("mensagem", "Endereço salvo com sucesso!");
@@ -84,7 +84,7 @@ public class EnderecoControle {
 			e.printStackTrace();
 		}
 		if (result.hasErrors()) {
-			return "/editar-endereco";
+			return "editar-endereco";
 		}
 		enderecoServico.salvar(endereco);
 		attributes.addFlashAttribute("mensagem", "Endereço alterado com sucesso!");
