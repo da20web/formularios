@@ -39,14 +39,14 @@ public class EstudanteControle {
 		}
 		List<Estudante> estudantes = estudanteServico.buscarTodosEstudantesPorNome(nome);
 		model.addAttribute("listaEstudantes", estudantes);
-		return "/lista-estudantes";
+		return "lista-estudantes";
 	}
 	
 	@GetMapping("/novo")
 	public String novoEstudante(Model model) {
 		Estudante estudante = new Estudante();
 		model.addAttribute("novoEstudante", estudante);
-		return "/novo-estudante";
+		return "novo-estudante";
 	}
 	
 	@PostMapping("/gravar")
@@ -54,7 +54,7 @@ public class EstudanteControle {
 			BindingResult erros,
 			RedirectAttributes attributes) {
 		if (erros.hasErrors()) {
-			return "/novo-estudante";
+			return "novo-estudante";
 		}
 		estudanteServico.criarEstudante(estudante);
 		attributes.addFlashAttribute("mensagem", "Estudante salvo com sucesso!");
@@ -93,7 +93,7 @@ public class EstudanteControle {
 			RedirectAttributes attributes) {
 		if (erros.hasErrors()) {
 			estudante.setId(id);
-			return "/editar-estudante";
+			return "editar-estudante";
 		}
 		estudanteServico.editarEstudante(estudante);
 		return "redirect:/";
